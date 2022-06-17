@@ -6,6 +6,7 @@ use App\Repository\AccountMovementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -24,7 +25,7 @@ class HomeController extends AbstractController
         ]);
     }
     /**
-     * @Route("/add/", name="add_movement", methods={"POST"})
+     * @Route("/add", name="add_movement", methods={"POST"})
      */
     public function add(Request $request): JsonResponse
     {
@@ -33,5 +34,39 @@ class HomeController extends AbstractController
         dump($data);
 //        $this->movementRepo->add($data,true);
        return new JsonResponse(['status' => "Movement added!"],Response::HTTP_CREATED);
+    }
+    /**
+     * @Route("/movements", name="all_movements", methods={"GET"})
+     */
+    public function getAll(): JsonResponse
+    {
+        $movements = $this->movementRepo->findAll();
+        $data=[];
+
+        foreach($movements as $movement)
+        {
+            $data[] = [
+                'id' => $movement->getId(),
+                'comment' => $movement->getComment(),
+                'type' => $movement->getType(),
+                'amount' => $movement->getAmount(),
+            ];
+        }
+
+        return new JsonResponse($data,Response::HTTP_OK);
+    }
+    /**
+     * @Route("/{id}", name="get_one_movement", methods={"GET"})
+     */
+    public function get($id): JsonResponse
+    {
+        $movement = $this->movementRepo->findOneBy(['id'=>$id]);
+        $data = [
+            'id' => $movement->getId(),
+            'comment' => $movement->getComment(),
+            'type' => $movement->getType(),
+            'amount' => $movement->getAmount(),
+        ];
+        return new JsonResponse($data,Response::HTTP_OK);
     }
 }
