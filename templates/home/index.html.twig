@@ -8,6 +8,7 @@
             .then(response => response.json())
             .then(datas => {
                 console.log(datas);
+                {# TODO : to be refactored #}
                 datas.forEach(data=>{
                     const tbody = document.querySelector('#tableMovements');
                     const tr = document.createElement('tr');
@@ -23,7 +24,7 @@
                     tr.innerHTML = `
                         <td>${badge(data.type)}</td>
                         <td>${data.comment}</td>
-                        <td>${data.amount}</td>`;
+                        <td>$${data.amount}</td>`;
                     tbody.appendChild(tr);
                 });
 
