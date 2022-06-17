@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}My Wallet{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
@@ -12,12 +12,13 @@
         {% endblock %}
     </head>
     <body>
-        <form method="post" action="#">
+        <form method="post" action="{{ path('login') }}">
                 <input
                     type="text"
                     class="form-control rounded"
                     placeholder="username" id="inputUser"
                     name="inputUser"
+{#                    value="{{ last_username }}"#}
                 >
                 <input
                     type="text"
@@ -25,8 +26,14 @@
                     placeholder="pin" id="inputPin"
                     name="inputPin"
                 >
+                <button type="'submit">login</button>
         </form>
-
+{#        {% if error %}#}
+{#            <div class="alert alert-warning alert-dismissible fade show" role="alert">#}
+{#                <strong>Error!</strong> {{ error.messageKey|trans(error.messageData, 'security') }}#}
+{#                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
+{#            </div>#}
+{#        {% endif %}#}
         {% block body %}{% endblock %}
     </body>
 </html>
