@@ -11,29 +11,134 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
-        <form method="post" action="{{ path('login') }}">
-                <input
-                    type="text"
-                    class="form-control rounded"
-                    placeholder="username" id="inputUser"
-                    name="inputUser"
-{#                    value="{{ last_username }}"#}
-                >
-                <input
-                    type="text"
-                    class="form-control rounded"
-                    placeholder="pin" id="inputPin"
-                    name="inputPin"
-                >
-                <button type="'submit">login</button>
-        </form>
-{#        {% if error %}#}
-{#            <div class="alert alert-warning alert-dismissible fade show" role="alert">#}
-{#                <strong>Error!</strong> {{ error.messageKey|trans(error.messageData, 'security') }}#}
-{#                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>#}
-{#            </div>#}
-{#        {% endif %}#}
-        {% block body %}{% endblock %}
+    <body class="container-fluid">
+        <header>
+            <form method="post" class="row g-2 mt-1">
+                <h1 class="col-sm-5 col-md-7">My Wallet</h1>
+                <div class="col-sm-3 col-md-2">
+                    <input
+                        type="text"
+                        class="form-control rounded-pill"
+                        placeholder="username" id="inputUser"
+                        name="inputUser"
+                    >
+                </div>
+                <div class="col-sm-3 col-md-2">
+                    <input
+                        type="text"
+                        class="form-control rounded-pill"
+                        placeholder="pin" id="inputPin"
+                        name="inputPin"
+                    >
+                </div>
+                <button type="submit" class="btn btn-primary col-1 rounded-pill">-></button>
+            </form>
+        </header>
+{#        movement list#}
+        <div class="row">
+            <section class="col-sm-12 col-md-8">
+                <table class="col-12 border border-2 border-white">
+                    <tr class="text-center">
+                        <td>
+                            <span class="badge bg-success rounded-pill">Income</span>
+                        </td>
+                        <td>
+                            Salary
+                        </td>
+                        <td>
+                            $5.000
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>
+                            <span class="badge bg-success rounded-pill">Income</span>
+                        </td>
+                        <td>
+                            Salary
+                        </td>
+                        <td>
+                            $5.000
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>
+                            <span class="badge bg-success rounded-pill">Income</span>
+                        </td>
+                        <td>
+                            Salary
+                        </td>
+                        <td>
+                            $5.000
+                        </td>
+                    </tr>
+                    <tr class="text-center">
+                        <td>
+                            <span class="badge bg-success rounded-pill">Income</span>
+                        </td>
+                        <td>
+                            Salary
+                        </td>
+                        <td>
+                            $5.000
+                        </td>
+                    </tr>
+                </table>
+            </section>
+            <section class="col-sm-12 col-md-4">
+                <form class="bg-success row m-1">
+                        <label for="inputIncome" class="form-label">Add Income</label>
+                    <div class="row m-1">
+                        <input
+                                type="text"
+                                class="form-control col-9 movement form-control-sm bg-success border-0"
+                                id="inputExpenseText"
+                                name="inputExpenseText"
+                        >
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-9 p-0">
+                            <input
+                                    type="number"
+                                    class="form-control movement form-control-sm bg-success border-0"
+                                    id="inputIncome"
+                                    name="inputIncome"
+                            >
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary">-></button>
+                        </div>
+                    </div>
+
+                </form>
+                <form class="bg-danger row m-1">
+                    <label for="inputIncome" class="form-label">Add Income</label>
+                    <div class="row m-1">
+                        <input
+                                type="text"
+                                class="form-control col-9 movement form-control-sm bg-danger border-0"
+                                id="inputExpenseText"
+                                name="inputExpenseText"
+                        >
+                    </div>
+                    <div class="row m-1">
+                        <div class="col-9 p-0">
+                            <input
+                                    type="number"
+                                    class="form-control movement form-control-sm bg-danger border-0"
+                                    id="inputIncome"
+                                    name="inputIncome"
+                            >
+                        </div>
+                        <div class="col-3">
+                            <button type="submit" class="btn btn-primary">-></button>
+                        </div>
+                    </div>
+
+                </form>
+            </section>
+        </div>
+
+
+
     </body>
 </html>

@@ -1,9 +1,12 @@
 
 // customize some Bootstrap variables
-$primary: darken(#428bca, 20%);
-
-// the ~ allows you to reference things in node_modules
+$primary: darken(#6b1d9f, 20%);
+$text-primary: #ebe5f1;
 @import "~bootstrap/scss/bootstrap";
 body {
     background-color: $primary;
+    color:$text-primary;
+}
+.movement {
+    color: white !important;
 }
