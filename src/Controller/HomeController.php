@@ -36,7 +36,7 @@ class HomeController extends AbstractController
        return new JsonResponse(['status' => "Movement added!"],Response::HTTP_CREATED);
     }
     /**
-     * @Route("/movements", name="all_movements", methods={"GET"})
+     * @Route("movements", name="all_movements", methods={"GET"})
      */
     public function getAll(): JsonResponse
     {

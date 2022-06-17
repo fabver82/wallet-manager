@@ -1,1 +1,37 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+    async function fillTableMovements() {
+        {# TODO : retrieve url from routing #}
+        fetch('https://127.0.0.1:8000/movements')
+            .then(response => response.json())
+            .then(datas => {
+                console.log(datas);
+                datas.forEach(data=>{
+                    const tbody = document.querySelector('#tableMovements');
+                    const tr = document.createElement('tr');
+                    tr.classList.add("text-center");
+                    const badge = (type)=>{
+                        if (type == 'income'){
+                            return `<span class="badge bg-success rounded-pill">Income</span>`
+                        } else {
+                            return `<span class="badge bg-danger rounded-pill">Expense</span>`
+                        }
+
+                    }
+                    tr.innerHTML = `
+                        <td>${badge(data.type)}</td>
+                        <td>${data.comment}</td>
+                        <td>${data.amount}</td>`;
+                    tbody.appendChild(tr);
+                });
+
+            })
+            .catch((err)=>{
+                console.log('Fetch Error:-S',err);
+            });
+    }
+    fillTableMovements();
+    </script>
+{% endblock %}
