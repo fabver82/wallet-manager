@@ -66,9 +66,9 @@ class AccountMovement
     {
         return [
             'id' => $this->getId(),
-            'comment' => $this->getFirstName(),
-            'type' => $this->getLastName(),
-            'amount' => $this->getEmail()
+            'comment' => $this->getComment(),
+            'type' => $this->getType(),
+            'amount' => $this->getAmount(),
         ];
     }
 }
