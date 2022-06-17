@@ -1,12 +1,13 @@
 
 // customize some Bootstrap variables
-$primary: darken(#6b1d9f, 20%);
-$text-primary: #ebe5f1;
+$primary: darken(#ffffff, 20%);
+$success: darken(#75d087, 20%);
+$text-primary: #6b39ff;
 @import "~bootstrap/scss/bootstrap";
 body {
     background-color: $primary;
     color:$text-primary;
 }
 .movement {
-    color: white !important;
+    color: $text-primary;
 }
