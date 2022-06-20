@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\AccountMovement;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class HomeController extends AbstractController
@@ -32,8 +33,13 @@ class HomeController extends AbstractController
     {
         $data = json_decode($request->getContent(),true);
         //validate date
-        dump($data);
-//        $this->movementRepo->add($data,true);
+//        dump($data);
+        $movement = new AccountMovement();
+        $movement->setType($data['type']);
+        $movement->setAmount($data['amount']);
+        $movement->setComment($data['comment']);
+
+        $this->movementRepo->add($movement,true);
        return new JsonResponse(['status' => "Movement added!"],Response::HTTP_CREATED);
     }
     /**
