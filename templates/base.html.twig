@@ -17,7 +17,7 @@
             {% include 'components/_loginForm.html.twig' %}
         </header>
 {#        movement list#}
-        <div class="row">
+        <div class="row" data-controller="movements">
             <section class="col-sm-12 col-md-8">
                 {% include 'components/_movementList.html.twig' %}
             </section>
@@ -28,72 +28,7 @@
             </section>
         </div>
 
-        <script type="text/javascript">
-            //add a row into movement table
-            const addCell = (table,movement)=>{
-                const tr = document.createElement('tr');
-                tr.classList.add("text-center");
-                const badge = (type)=>{
-                    if (type == 'income'){
-                        return `<span class="badge bg-success rounded-pill">Income</span>`
-                    } else {
-                        return `<span class="badge bg-danger rounded-pill">Expense</span>`
-                    }
-
-                }
-                tr.innerHTML = `
-                        <td>${badge(movement.type)}</td>
-                        <td>${movement.comment}</td>
-                        <td>$${movement.amount}</td>`;
-                table.appendChild(tr);
-            }
-            // AJAX add movement to DB
-            const addMovement = (type)=>{
-                const movement = {
-                    comment:'',
-                    type: type,
-                    amount: 0,
-                }
-                if (type=='income'){
-                    movement.comment = document.getElementById('inputIncomeText').value;
-                    movement.amount = document.getElementById('inputIncome').value;
-                }else{
-                    movement.comment = document.getElementById('inputExpenseText').value;
-                    movement.amount = document.getElementById('inputExpense').value;
-                }
-
-
-                // POST datas
-                fetch("https://127.0.0.1:8000/add", {
-                    method: 'POST',
-                    redirect: 'follow',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(movement)
-                })
-                    .then(response => response.text())
-                    .then(result => {
-                        console.log(result);
-                        const table = document.getElementById('tableMovements');
-                        addCell(table,movement);
-                    })
-                    .catch(error => console.log('error', error));
-            }
-            // get forms from DOM
-            const formAddIncome = document.getElementById('add-income');
-            const formAddExpense = document.getElementById('add-expense');
-            //events listener
-            formAddIncome.addEventListener('submit',(e)=>{
-                e.preventDefault();
-                addMovement('income');
-            })
-            formAddExpense.addEventListener('submit',(e)=>{
-                e.preventDefault();
-                addMovement('expense');
-            })
-        </script>
+{#        <script type="text/javascript" src="{{ asset('js/movements_add.js') }}"/>#}
     </body>
 </html>
 
