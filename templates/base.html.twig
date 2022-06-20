@@ -29,6 +29,7 @@
         </div>
 
         <script type="text/javascript">
+            //add a row into movement table
             const addCell = (table,movement)=>{
                 const tr = document.createElement('tr');
                 tr.classList.add("text-center");
@@ -46,15 +47,21 @@
                         <td>$${movement.amount}</td>`;
                 table.appendChild(tr);
             }
-            // get datas from DOM
-            const formAddIncome = document.getElementById('add-income');
-            formAddIncome.addEventListener('submit',(e)=>{
-                e.preventDefault();
+            // AJAX add movement to DB
+            const addMovement = (type)=>{
                 const movement = {
-                    comment:document.getElementById('inputIncomeText').value,
-                    type: 'income',
-                    amount: document.getElementById('inputIncome').value
+                    comment:'',
+                    type: type,
+                    amount: 0,
                 }
+                if (type=='income'){
+                    movement.comment = document.getElementById('inputIncomeText').value;
+                    movement.amount = document.getElementById('inputIncome').value;
+                }else{
+                    movement.comment = document.getElementById('inputExpenseText').value;
+                    movement.amount = document.getElementById('inputExpense').value;
+                }
+
 
                 // POST datas
                 fetch("https://127.0.0.1:8000/add", {
@@ -73,7 +80,18 @@
                         addCell(table,movement);
                     })
                     .catch(error => console.log('error', error));
-
+            }
+            // get forms from DOM
+            const formAddIncome = document.getElementById('add-income');
+            const formAddExpense = document.getElementById('add-expense');
+            //events listener
+            formAddIncome.addEventListener('submit',(e)=>{
+                e.preventDefault();
+                addMovement('income');
+            })
+            formAddExpense.addEventListener('submit',(e)=>{
+                e.preventDefault();
+                addMovement('expense');
             })
         </script>
     </body>
