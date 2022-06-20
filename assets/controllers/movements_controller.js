@@ -1,5 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-import {addCell,addMovement} from "../js/movement_list";
+import {addCell,addMovement,clearInput} from "../js/movement_list";
 
 export default class extends Controller {
     static targets = [ "filltable" ]

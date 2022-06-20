@@ -16,6 +16,16 @@ export const addCell = (table,movement)=>{
         <td>$${movement.amount}</td>`;
     table.appendChild(tr);
 }
+
+const clearInput = (type) => {
+    if (type=='income'){
+        document.getElementById('inputIncomeText').value='';
+        document.getElementById('inputIncome').value='';
+    }else{
+        document.getElementById('inputExpenseText').value='';
+        document.getElementById('inputExpense').value='';
+    }
+}
 // AJAX add movement to DB
 export const addMovement = (type)=>{
     const movement = {
@@ -47,6 +57,8 @@ export const addMovement = (type)=>{
             console.log(result);
             const table = document.getElementById('tableMovements');
             addCell(table,movement);
+            clearInput(type);
+
         })
         .catch(error => console.log('error', error));
 }
