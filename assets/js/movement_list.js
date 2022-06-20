@@ -16,7 +16,15 @@ export const addCell = (table,movement)=>{
         <td>$${movement.amount}</td>`;
     table.appendChild(tr);
 }
-
+export const fillTable = (table,url)=>{
+    fetch(url)
+        .then(response => response.json())
+        .then(movements => {
+            movements.forEach(movement=>{
+                addCell(table,movement);
+            })
+        });
+}
 const clearInput = (type) => {
     if (type=='income'){
         document.getElementById('inputIncomeText').value='';
@@ -27,7 +35,7 @@ const clearInput = (type) => {
     }
 }
 // AJAX add movement to DB
-export const addMovement = (type)=>{
+export const addMovement = (type,url)=>{
     const movement = {
         comment:'',
         type: type,
@@ -43,7 +51,7 @@ export const addMovement = (type)=>{
 
 
     // POST datas
-    fetch("https://127.0.0.1:8000/add", {
+    fetch(url, {
         method: 'POST',
         redirect: 'follow',
         headers: {
