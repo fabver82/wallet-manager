@@ -1,18 +1,20 @@
 {% extends 'base.html.twig' %}
 {% block javascripts %}
     {{ parent() }}
-    <script>
+{#    AJAx call to fill the movement table#}
+    <script type="text/javascript">
     async function fillTableMovements() {
         {# TODO : retrieve url from routing #}
         fetch('https://127.0.0.1:8000/movements')
             .then(response => response.json())
-            .then(datas => {
-                console.log(datas);
+            .then(movements => {
+                console.log(movements);
                 {# TODO : to be refactored #}
-                datas.forEach(data=>{
+                movements.forEach(movement=>{
                     const tbody = document.querySelector('#tableMovements');
                     const tr = document.createElement('tr');
                     tr.classList.add("text-center");
+                    {# TODO: protect datas#}
                     const badge = (type)=>{
                         if (type == 'income'){
                             return `<span class="badge bg-success rounded-pill">Income</span>`
@@ -22,9 +24,9 @@
 
                     }
                     tr.innerHTML = `
-                        <td>${badge(data.type)}</td>
-                        <td>${data.comment}</td>
-                        <td>$${data.amount}</td>`;
+                        <td>${badge(movement.type)}</td>
+                        <td>${movement.comment}</td>
+                        <td>$${movement.amount}</td>`;
                     tbody.appendChild(tr);
                 });
 
