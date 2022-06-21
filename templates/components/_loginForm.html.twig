@@ -1,20 +1,15 @@
-<form method="post" class="row g-2 mt-1">
-    <h1 class="col-sm-5 col-md-7">My Wallet</h1>
-    <div class="col-sm-3 col-md-2">
-        <input
-                type="text"
-                class="form-control rounded-pill"
-                placeholder="username" id="inputUser"
-                name="inputUser"
-        >
-    </div>
-    <div class="col-sm-3 col-md-2">
-        <input
-                type="text"
-                class="form-control rounded-pill"
-                placeholder="pin" id="inputPin"
-                name="inputPin"
-        >
-    </div>
-    <button type="submit" class="btn btn-primary col-1 rounded-pill">-></button>
+<form class="d-flex">
+    <input
+            type="text"
+            placeholder="user"
+            class="border-1 border-primary py-1 px-2 me-1 text-center rounded-pill  login__input"
+    />
+    <!-- In practice, use type="password" -->
+    <input
+            type="text"
+            placeholder="PIN"
+            maxlength="4"
+            class="border-1 border-primary py-1 px-2 me-1 text-center rounded-pill login__input"
+    />
+    <button class="border-0 bg-transparent login__btn">&rarr;</button>
 </form>

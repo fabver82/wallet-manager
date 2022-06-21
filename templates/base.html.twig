@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>{% block title %}My Wallet{% endblock %}</title>
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -12,10 +13,14 @@
         {% endblock %}
 
     </head>
-    <body class="container-fluid">
-        <header>
+    <body class="container">
+        <!-- TOP NAVIGATION -->
+        <nav class="d-flex justify-content-between align-items-center py-0 px-2">
+            <p>Log in to get started</p>
+            <img src="logo.png" alt="Logo" class="logo" />
             {% include 'components/_loginForm.html.twig' %}
-        </header>
+        </nav>
+
 {#        movement list#}
         <div class="row" data-controller="movements">
             <section class="col-sm-12 col-md-8">

@@ -1,6 +1,6 @@
 
 // customize some Bootstrap variables
-$primary: darken(#ffffff, 20%);
+$primary: #f3f3f3;
 $success: #50f573;
 $danger: #f14d4d;
 $text-primary: #150160;
@@ -8,6 +8,36 @@ $text-primary: #150160;
 body {
     background-color: $primary;
     color:$text-primary;
+}
+.logo {
+    height: 5.25rem;
+}
+.login{
+    __input{
+        width: 12rem;
+        transition: all 0.3s;
+    }
+    __input:focus{
+        outline: none;
+        border: 1px solid #ccc;
+
+    }
+    __input::placeholder {
+        color: #bbb;
+    }
+    __btn {
+        font-size: 2.2rem;
+        color: inherit;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    __btn:hover,
+    __btn:focus,
+    --sort:hover,
+    --sort:focus{
+        outline: none;
+        color: #777;
+    }
 }
 .movement {
     color: $text-primary;
