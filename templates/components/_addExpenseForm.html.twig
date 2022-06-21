@@ -1,8 +1,9 @@
-<form class="bg-danger row m-1" method="post" id="add-expense" data-action="movements#addMovement" data-movements-type-param='expense'>
+<form class="shadow rounded row m-1 add-expense" method="post" id="add-expense" data-action="movements#addMovement" data-movements-type-param='expense'>
     <label for="inputExpenseText" class="form-label">Add Expense</label>
     <div class="row m-1">
         <input
                 type="text"
+                placeholder="Subject"
                 class="form-control col-9 movement form-control-sm bg-danger border-0"
                 id="inputExpenseText"
                 name="inputExpenseText"
@@ -20,7 +21,7 @@
             >
         </div>
         <div class="col-3">
-            <button type="submit" class="btn btn-primary">-></button>
+            <button type="submit" class="btn btn-transparent">&rarr;</button>
         </div>
     </div>
 

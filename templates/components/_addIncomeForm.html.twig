@@ -1,8 +1,9 @@
-<form class="bg-success row m-1" method="post" id="add-income" data-action="movements#addMovement" data-movements-type-param='income'>
+<form class="shadow rounded row m-1 add-income" method="post" id="add-income" data-action="movements#addMovement" data-movements-type-param='income'>
     <label for="inputIncome" class="form-label">Add Income</label>
     <div class="row m-1">
         <input
                 type="text"
+                placeholder="Subject"
                 class="form-control col-9 movement form-control-sm bg-success border-0"
                 id="inputIncomeText"
                 name="inputIncomeText"
@@ -20,7 +21,7 @@
             >
         </div>
         <div class="col-3">
-            <button type="submit" class="btn btn-primary">-></button>
+            <button type="submit" class="btn btn-transparent">&rarr;</button>
         </div>
     </div>
 

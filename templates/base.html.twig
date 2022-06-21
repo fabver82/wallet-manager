@@ -14,26 +14,24 @@
 
     </head>
     <body class="container">
-        <!-- TOP NAVIGATION -->
-        <nav class="d-flex justify-content-between align-items-center py-0 px-2">
-            <p>Log in to get started</p>
+{#        TOP NAVIGATION#}
+        <nav class="d-flex justify-content-between align-items-center py-0 px-2 mb-2">
+            <p>My Wallet</p>
             <img src="logo.png" alt="Logo" class="logo" />
             {% include 'components/_loginForm.html.twig' %}
         </nav>
 
 {#        movement list#}
-        <div class="row" data-controller="movements">
-            <section class="col-sm-12 col-md-8">
+        <main class="row" data-controller="movements">
+            <section class="col-sm-12 col-md-8 movements-section">
                 {% include 'components/_movementList.html.twig' %}
             </section>
             <section class="col-sm-12 col-md-4">
-{#                TODO: to refactor in one component/form #}
+{#                TODO: could be refactored in one component/form #}
                 {% include('components/_addIncomeForm.html.twig') %}
                 {% include('components/_addExpenseForm.html.twig') %}
             </section>
-        </div>
-
-{#        <script type="text/javascript" src="{{ asset('js/movements_add.js') }}"/>#}
+        </main>
     </body>
 </html>
 

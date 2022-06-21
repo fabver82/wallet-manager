@@ -32,13 +32,24 @@ body {
         transition: all 0.3s;
     }
     __btn:hover,
-    __btn:focus,
-    --sort:hover,
-    --sort:focus{
+    __btn:focus{
         outline: none;
         color: #777;
     }
 }
-.movement {
+.movements-section {
     color: $text-primary;
+    overflow: scroll;
+    height:75vh;
 }
+.add-income{
+    background-image: linear-gradient(to top left, #39b385, #9be15d);
+}
+.add-expense{
+    background-image: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+h2{
+    font-size:1rem;
+
+}
+
