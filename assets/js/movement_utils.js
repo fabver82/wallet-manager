@@ -60,13 +60,13 @@ export const addMovement = (type,url)=>{
         },
         body: JSON.stringify(movement)
     })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(result => {
-            console.log(result);
-            const table = document.getElementById('tableMovements');
-            addCell(table,movement);
-            clearInput(type);
-
+            if (result.status==201){
+                const table = document.getElementById('tableMovements');
+                addCell(table,movement);
+                clearInput(type);
+            }
         })
         .catch(error => console.log('error', error));
 }

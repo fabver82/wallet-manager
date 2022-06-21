@@ -48,7 +48,7 @@ class MovementApiController extends AbstractController
         $movement->setComment($data['comment']);
 
         $this->movementRepo->add($movement,true);
-        return new JsonResponse(['status' => "Movement added!"],Response::HTTP_CREATED);
+        return new JsonResponse(['status' => 201],Response::HTTP_CREATED);
     }
 
     #[Route('/api/movements/{id}', name: 'get_one_movement', methods: ['GET'])]
