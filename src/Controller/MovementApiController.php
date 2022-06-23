@@ -63,4 +63,18 @@ class MovementApiController extends AbstractController
         ];
         return new JsonResponse($data,Response::HTTP_OK);
     }
+    #[Route('/api/balance', name: 'get_balance', methods: ['GET'])]
+    public function balance(): JsonResponse
+    {
+
+        $incomes = $this->movementRepo->getTotal('income');
+        $expenses = $this->movementRepo->getTotal('expense');
+        $balance = $incomes - $expenses;
+        $totals = [
+            'incomes'=> $incomes,
+            'expenses' => $expenses,
+            'balance'=>$balance
+        ];
+        return new JsonResponse($totals,Response::HTTP_OK);
+    }
 }

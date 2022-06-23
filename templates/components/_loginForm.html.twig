@@ -1,15 +1,23 @@
-<form class="d-flex">
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <a href="{{ path('logout') }}">Logout</a>
+{% else %}
+{# login via stimulus   #}
+<form class="d-flex" id="login_form"  method="post" data-controller="login" data-action="login#authenticate">
     <input
             type="text"
             placeholder="user"
-            class="form-control border-1 border-primary py-1 px-2 me-1 text-center rounded-pill  login__input"
-    />
-    <!-- In practice, use type="password" -->
-    <input
-            type="text"
-            placeholder="PIN"
-            maxlength="4"
+            id="inputUsername"
+            name="inputUsername"
             class="form-control border-1 border-primary py-1 px-2 me-1 text-center rounded-pill login__input"
     />
-    <button class="border-0 bg-transparent login__btn">&rarr;</button>
+    <input
+            type="password"
+            placeholder="PIN"
+            maxlength="4"
+            id="inputPIN"
+            name="inputPIN"
+            class="form-control border-1 border-primary py-1 px-2 me-1 text-center rounded-pill login__input"
+    />
+    <button class="border-0 bg-transparent login__btn" type="submit">&rarr;</button>
 </form>
+{% endif %}

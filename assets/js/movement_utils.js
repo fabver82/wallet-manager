@@ -1,6 +1,7 @@
 //add a row into movement table
 export const addCell = (table,movement)=>{
-    const tr = document.createElement('tr');
+    // const tr = document.createElement('tr');
+    const tr = table.insertRow(0);
     tr.classList.add("text-center");
     const badge = (type)=>{
         if (type == 'income'){
@@ -12,9 +13,31 @@ export const addCell = (table,movement)=>{
     }
     tr.innerHTML = `
         <td>${badge(movement.type)}</td>
-        <td>${movement.comment}</td>
-        <td>$${movement.amount}</td>`;
-    table.appendChild(tr);
+        <td class="text-start">${movement.comment}</td>
+        <td class="text-start">${formatUSD(movement.amount)}</td>`;
+    // table.appendChild(tr);
+}
+const formatUSD = (amount) => {
+    let formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 2,
+    });
+    return formatter.format(amount);
+}
+
+export const fillBalanceBlock = ()=>{
+
+    fetch('https://127.0.0.1:8000/api/balance')
+        .then(response => response.json())
+        .then(summary =>{
+            const incomes = document.getElementById('totalIncomes');
+            const expenses = document.getElementById('totalExpenses');
+            const totalBalance = document.getElementById('totalBalance');
+            incomes.textContent =formatUSD(summary['incomes']);
+            expenses.textContent =formatUSD(summary['expenses']);
+            totalBalance.textContent =formatUSD(summary['balance']);
+        })
 }
 export const fillTable = (table,url)=>{
     fetch(url)
@@ -65,8 +88,8 @@ export const addMovement = (type,url)=>{
             if (result.status==201){
                 const table = document.getElementById('tableMovements');
                 addCell(table,movement);
-                clearInput(type);
             }
+            clearInput(type);
         })
         .catch(error => console.log('error', error));
 }

@@ -25,10 +25,7 @@ class AppFixtures extends Fixture
         $user->setUsername('user1');
         $user->setRoles(['ROLE_USER']);
         $plaintextPassword = '1111';
-        $hashedPassword = $this->passwordHasher->hashPassword(
-            $user,
-            $plaintextPassword
-        );
+        $hashedPassword = $this->passwordHasher->hashPassword($user,$plaintextPassword);
         $user->setPassword($hashedPassword);
         $manager->persist($user);
         $manager->flush();

@@ -39,6 +39,21 @@ class AccountMovementRepository extends ServiceEntityRepository
         }
     }
 
+    public function getTotal($value): float
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.type = :val')
+            ->setParameter('val', $value)
+            ->select('SUM(a.amount) as total')
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+//    public function findAll()
+//    {
+//        return $this->findBy(array(), array('id' => 'DESC'));
+//    }
+
 //    /**
 //     * @return AccountMovement[] Returns an array of AccountMovement objects
 //     */
