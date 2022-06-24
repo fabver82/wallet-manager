@@ -10,11 +10,11 @@ a simple app to log our expenses/incomes and to calculate the balance.
 
 ### To start the project run the following commands in your terminal: 
 
-1. ``npm install`` to install depedencies.
+1. ``npm install`` and ``composer install`` to install dependencies.
 2. ``docker compose up`` this will run a local environment.
-3. ``docker ps -a`` and check that the port is correctly set in .env file.
-4. ``php bin/console doctrine:migration:migrate`` it will create the database.
-5. ``php bin/console doctrine:fixtures:load`` it will add some fake datas in our db.
+3. ``php bin/console doctrine:migration:migrate`` it will create the database.
+4. if you got an error message : ``docker ps -a`` and check that the port is correctly set in .env file.
+5. ``php bin/console doctrine:fixtures:load``, choose "yes" and it will add some fake datas in our db.
 6. ``yarn build`` to compile js and css files.
 7. ``symfony serve -d`` it will start the local server. Just click on the link to load the page.
 8. user login example : user: user1 / PIN: 1111 
