@@ -23,6 +23,9 @@
 
 {#        movement list#}
         <main class="row" data-controller="movements">
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
             <section class="col-sm-12 col-md-8 movements-section">
                 {% include 'components/_movementList.html.twig' %}
             </section>

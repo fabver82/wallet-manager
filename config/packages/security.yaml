@@ -17,10 +17,9 @@ security:
             lazy: true
             provider: app_user_provider
 
-            json_login:
-                check_path: api_login
-                username_path: username
-                password_path: password
+            form_login:
+                login_path: login
+                check_path: login
             logout:
                 path: logout
     # Easy way to control access for large sections of your site

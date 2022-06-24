@@ -1,13 +1,14 @@
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <a href="{{ path('logout') }}">Logout</a>
 {% else %}
-{# login via stimulus   #}
-<form class="d-flex" id="login_form"  method="post" data-controller="login" data-action="login#authenticate">
+{#    in case we use json login with stimulus#}
+{# data-controller="login" data-action="login#authenticate"  #}
+<form class="d-flex" id="login_form"  method="post" action="{{ path('login') }}">
     <input
             type="text"
             placeholder="user"
             id="inputUsername"
-            name="inputUsername"
+            name="_username"
             class="form-control border-1 border-primary py-1 px-2 me-1 text-center rounded-pill login__input"
     />
     <input
@@ -15,7 +16,7 @@
             placeholder="PIN"
             maxlength="4"
             id="inputPIN"
-            name="inputPIN"
+            name="_password"
             class="form-control border-1 border-primary py-1 px-2 me-1 text-center rounded-pill login__input"
     />
     <button class="border-0 bg-transparent login__btn" type="submit">&rarr;</button>
