@@ -1,5 +1,5 @@
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-    <a href="{{ path('logout') }}">Logout</a>
+    <a class="link-danger" href="{{ path('logout') }}">Logout</a>
 {% else %}
 {#    in case we use json login with stimulus#}
 {# data-controller="login" data-action="login#authenticate"  #}
