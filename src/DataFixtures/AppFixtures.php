@@ -33,9 +33,10 @@ class AppFixtures extends Fixture
         $faker = Factory::create();
         for ($i=0;$i<20;$i++){
             $movement = new AccountMovement();
-            $movement->setcomment($faker->words(3,true));
-            $movement->setAmount($faker->randomFloat(2,1,100000));
+            $movement->setcomment($faker->words(2,true));
+            $movement->setAmount($faker->randomFloat(2,1,10000));
             $movement->setType($faker->randomElement(['income','expense']));
+            $movement->setUser($user);
             $manager->persist($movement);
 
         }

@@ -21,6 +21,10 @@ class AccountMovement
 
     #[ORM\Column(type: 'float')]
     private $amount;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'accountMovements')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $user;
 // TODO: add create date
     public function getId(): ?int
     {
@@ -70,5 +74,17 @@ class AccountMovement
             'type' => $this->getType(),
             'amount' => $this->getAmount(),
         ];
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
     }
 }

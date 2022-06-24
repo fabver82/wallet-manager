@@ -1,4 +1,6 @@
+# Wallet Manager
 
+a simple app to log our expenses/incomes and to calculate the balance. 
 
 ### Prerequisite
 - docker

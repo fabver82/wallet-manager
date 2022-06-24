@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -28,6 +30,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", unique=true)
      */
     private $apiToken;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: AccountMovement::class, orphanRemoval: true)]
+    private $accountMovements;
+
+    public function __construct()
+    {
+        $this->accountMovements = new ArrayCollection();
+    }
     public function getId(): ?int
     {
         return $this->id;
@@ -103,5 +113,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setApiToken($apiToken)
     {
         $this->apiToken = $apiToken;
+    }
+
+    /**
+     * @return Collection<int, AccountMovement>
+     */
+    public function getAccountMovements(): Collection
+    {
+        return $this->accountMovements;
+    }
+
+    public function addAccountMovement(AccountMovement $accountMovement): self
+    {
+        if (!$this->accountMovements->contains($accountMovement)) {
+            $this->accountMovements[] = $accountMovement;
+            $accountMovement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAccountMovement(AccountMovement $accountMovement): self
+    {
+        if ($this->accountMovements->removeElement($accountMovement)) {
+            // set the owning side to null (unless already changed)
+            if ($accountMovement->getUser() === $this) {
+                $accountMovement->setUser(null);
+            }
+        }
+
+        return $this;
     }
 }

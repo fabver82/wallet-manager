@@ -22,7 +22,7 @@ class MovementApiController extends AbstractController
     #[Route('/api/movements', name: 'all_movements', methods: ['GET'])]
     public function index(): JsonResponse
     {
-        $movements = $this->movementRepo->findAll();
+        $movements = $this->movementRepo->findBy(['user' => $this->getUser()]);
         $data=[];
 
         foreach($movements as $movement)
@@ -46,6 +46,7 @@ class MovementApiController extends AbstractController
         $movement->setType($data['type']);
         $movement->setAmount($data['amount']);
         $movement->setComment($data['comment']);
+        $movement->setUser($this->getUser());
 
         $this->movementRepo->add($movement,true);
         return new JsonResponse(['status' => 201],Response::HTTP_CREATED);
@@ -67,8 +68,8 @@ class MovementApiController extends AbstractController
     public function balance(): JsonResponse
     {
 
-        $incomes = $this->movementRepo->getTotal('income');
-        $expenses = $this->movementRepo->getTotal('expense');
+        $incomes = $this->movementRepo->getTotal('income',$this->getUser());
+        $expenses = $this->movementRepo->getTotal('expense',$this->getUser());
         $balance = $incomes - $expenses;
         $totals = [
             'incomes'=> $incomes,

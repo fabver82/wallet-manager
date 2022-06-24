@@ -62,7 +62,7 @@ export const addMovement = (type,url)=>{
     const movement = {
         comment:'',
         type: type,
-        amount: 0,
+        amount: 0
     }
     if (type=='income'){
         movement.comment = document.getElementById('inputIncomeText').value;
