@@ -13,7 +13,7 @@
 3. ``php bin/console doctrine:migration:migrate`` it will create the database.
 4. ``php bin/console doctrine:fixtures:load`` it will add some fake datas in our db.
 5. ``symfony serve -d`` it will start the local server. Just click on the link to load the page.
-6. user login example : user: user1 / PIN: 1111 (currently not working properly)
+6. user login example : user: user1 / PIN: 1111 
 
 PHPMyAdmin is installed, you can check the database by going to localhost:8080.
 user: root / password: password
